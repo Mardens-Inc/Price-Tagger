@@ -17,7 +17,7 @@ export default function EyewearForm()
 <head>
     <title>Print</title>
 </head>
-<body style="font-family: verdana,sans-serif; font-size: 5pt; margin: 0;">
+<body style="font-family: verdana,sans-serif; font-size: 5pt; margin: 0;background-color:white;">
 <div id="eyewearbox" style="width: 110px; height: 78px; text-align: center; margin-left: 7px; margin-top: 0; font-family: 'Roboto', sans-serif;">
     <div class="rotate180" style="transform: rotate(180deg); padding-bottom: 5px;">
         <p class="LotNum" style="font-size: 8pt; font-weight: Bold; padding-left: 3px; padding-bottom: -5px; line-height: 6px; text-align: right;">Marden's Price</p>

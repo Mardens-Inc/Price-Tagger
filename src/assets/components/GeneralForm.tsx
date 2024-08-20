@@ -86,7 +86,7 @@ export default function GeneralForm()
                         >
                             {department =>
                             {
-                                return <AutocompleteItem key={department.id} value={department.id}>{department.name}</AutocompleteItem>;
+                                return <AutocompleteItem key={department.id} value={department.id} textValue={department.name}>{department.id} - {department.name}</AutocompleteItem>;
                             }}
                         </Autocomplete>
                         <Autocomplete

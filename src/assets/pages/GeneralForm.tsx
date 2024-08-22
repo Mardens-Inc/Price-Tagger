@@ -21,7 +21,7 @@ export default function GeneralForm()
     useEffect(() =>
     {
         // const uri: URL = new URL("http://pricing.local/api/tag-pricer/general");
-        const uri: URL = new URL("https://pricing-new.mardens.com/api/tag-pricer/general");
+        const uri: URL = new URL("https://pricetagger.mardens.com/api/");
         if (department) uri.searchParams.append("department", department);
         if (label) uri.searchParams.append("label", label);
         if (color) uri.searchParams.append("color", color);

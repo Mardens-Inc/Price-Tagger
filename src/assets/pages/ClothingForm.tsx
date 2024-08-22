@@ -43,7 +43,7 @@ export default function ClothingForm()
 
     return (
         <Card classNames={{
-            base: "dark:text-white w-[90%] mx-auto max-h-[80vh]",
+            base: "dark:text-white w-[90%] mx-auto max-h-[calc(100vh_-_100px)] h-[100vh] overflow-y-auto",
             body: "pb-4",
             footer: "py-4 min-h-[300px]"
         }}>

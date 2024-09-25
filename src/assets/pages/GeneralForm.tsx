@@ -1,7 +1,7 @@
-import {Autocomplete, AutocompleteItem, Button, Card, CardBody, CardHeader, cn, Image, Input, Switch, Tooltip} from "@nextui-org/react";
+import {Autocomplete, AutocompleteItem, Button, Card, CardBody, CardHeader, Image, Input, Tooltip} from "@nextui-org/react";
 import {useEffect, useState} from "react";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faPrint} from "@fortawesome/free-solid-svg-icons";
+import {faPercentage, faPrint, faStore, faStoreSlash, faTag, faTags} from "@fortawesome/free-solid-svg-icons";
 import {departments} from "../../main.tsx";
 
 export default function GeneralForm()
@@ -68,90 +68,107 @@ export default function GeneralForm()
         }}>
             <CardHeader>
                 <p className={"text-4xl mr-auto"}> General Tags </p>
+                <div className="flex flex-row gap-4">
+                    <Tooltip content={"Show will show the \"Marden's Price\" and \"Retail Price\" over the fields"}>
+                        <Button radius={"full"} color={showPriceLabel ? "primary" : "default"} onClick={() => setShowPriceLabel(prev => !prev)}>
+                            <FontAwesomeIcon icon={showPriceLabel ? faTags : faTag}/>
+                        </Button>
+                    </Tooltip>
+                    <Tooltip content={"Replace the \"Retail Price\" with \"Club Price\". This is used for Sam's Club tags."}>
+                        <Button radius={"full"} color={useClubPrice ? "primary" : "default"} onClick={() => setUseClubPrice(prev => !prev)}>
+                            <FontAwesomeIcon icon={useClubPrice ? faStore : faStoreSlash}/>
+                        </Button>
+                    </Tooltip>
+                    <Tooltip content={"Calculate the Mardens Price using a percentage instead of a static value."}>
+                        <Button radius={"full"} color={usePercentage ? "primary" : "default"} onClick={() => setUsePercentage(prev => !prev)}>
+                            <FontAwesomeIcon icon={faPercentage}/>
+                        </Button>
+                    </Tooltip>
 
-                <div className="flex flex-row gap-4 grow shrink sm:flex-wrap lg:flex-nowrap md:flex-nowrap">
-                    <Switch
-                        checked={showPriceLabel}
-                        onValueChange={setShowPriceLabel}
-                        classNames={{
-                            base: cn(
-                                "inline-flex flex-row-reverse max-w-md grow bg-content1 hover:bg-content2 items-center",
-                                "justify-between cursor-pointer rounded-lg gap-2 p-4 border-2 border-transparent",
-                                "data-[selected=true]:border-primary"
-                            ),
-                            wrapper: "p-0 h-4 overflow-visible",
-                            thumb: cn("w-6 h-6 border-2 shadow-lg",
-                                "group-data-[hover=true]:border-primary",
-                                //selected
-                                "group-data-[selected=true]:ml-6",
-                                // pressed
-                                "group-data-[pressed=true]:w-7",
-                                "group-data-[selected]:group-data-[pressed]:ml-4"
-                            )
-                        }}
-                    >
-                        <div className="flex flex-col gap-1">
-                            <p className="text-medium">Show Price Label</p>
-                            <p className="text-tiny text-default-400 md:hidden sm:lg:block">
-                                Show will show the "Marden's Price" and "Retail Price" over the fields
-                            </p>
-                        </div>
-                    </Switch>
-                    <Switch
-                        checked={useClubPrice}
-                        onValueChange={setUseClubPrice}
-                        classNames={{
-                            base: cn(
-                                "inline-flex flex-row-reverse w-full max-w-md bg-content1 hover:bg-content2 items-center",
-                                "justify-between cursor-pointer rounded-lg gap-2 p-4 border-2 border-transparent",
-                                "data-[selected=true]:border-primary"
-                            ),
-                            wrapper: "p-0 h-4 overflow-visible",
-                            thumb: cn("w-6 h-6 border-2 shadow-lg",
-                                "group-data-[hover=true]:border-primary",
-                                //selected
-                                "group-data-[selected=true]:ml-6",
-                                // pressed
-                                "group-data-[pressed=true]:w-7",
-                                "group-data-[selected]:group-data-[pressed]:ml-4"
-                            )
-                        }}
-                    >
-                        <div className="flex flex-col gap-1">
-                            <p className="text-medium">Use Club Price</p>
-                            <p className="text-tiny text-default-400 md:hidden sm:lg:block">
-                                Replace the "Retail Price" with "Club Price".<br/> This is used for Sam's Club tags.
-                            </p>
-                        </div>
-                    </Switch>
-                    <Switch
-                        checked={usePercentage}
-                        onValueChange={setUsePercentage}
-                        classNames={{
-                            base: cn(
-                                "inline-flex flex-row-reverse w-full max-w-md bg-content1 hover:bg-content2 items-center",
-                                "justify-between cursor-pointer rounded-lg gap-2 p-4 border-2 border-transparent",
-                                "data-[selected=true]:border-primary"
-                            ),
-                            wrapper: "p-0 h-4 overflow-visible",
-                            thumb: cn("w-6 h-6 border-2 shadow-lg",
-                                "group-data-[hover=true]:border-primary",
-                                //selected
-                                "group-data-[selected=true]:ml-6",
-                                // pressed
-                                "group-data-[pressed=true]:w-7",
-                                "group-data-[selected]:group-data-[pressed]:ml-4"
-                            )
-                        }}
-                    >
-                        <div className="flex flex-col gap-1">
-                            <p className="text-medium">Use Percentage</p>
-                            <p className="text-tiny text-default-400 md:hidden sm:lg:block">
-                                Calculate the Mardens Price using a percentage instead of a static value.
-                            </p>
-                        </div>
-                    </Switch>
                 </div>
+                {/*<div className="flex flex-row gap-4 grow shrink sm:hidden lg:flex-nowrap  px-4 hidden">*/}
+                {/*    <Switch*/}
+                {/*        checked={showPriceLabel}*/}
+                {/*        onValueChange={setShowPriceLabel}*/}
+                {/*        classNames={{*/}
+                {/*            base: cn(*/}
+                {/*                "inline-flex flex-row-reverse max-w-md grow bg-content1 hover:bg-content2 items-center",*/}
+                {/*                "justify-between cursor-pointer rounded-lg gap-2 p-4 border-2 border-transparent",*/}
+                {/*                "data-[selected=true]:border-primary"*/}
+                {/*            ),*/}
+                {/*            wrapper: "p-0 h-4 overflow-visible",*/}
+                {/*            thumb: cn("w-6 h-6 border-2 shadow-lg",*/}
+                {/*                "group-data-[hover=true]:border-primary",*/}
+                {/*                //selected*/}
+                {/*                "group-data-[selected=true]:ml-6",*/}
+                {/*                // pressed*/}
+                {/*                "group-data-[pressed=true]:w-7",*/}
+                {/*                "group-data-[selected]:group-data-[pressed]:ml-4"*/}
+                {/*            )*/}
+                {/*        }}*/}
+                {/*    >*/}
+                {/*        <div className="flex flex-col gap-1">*/}
+                {/*            <p className="text-medium">Show Price Label</p>*/}
+                {/*            <p className="text-tiny text-default-400 md:hidden sm:lg:block">*/}
+                {/*                Show will show the "Marden's Price" and "Retail Price" over the fields*/}
+                {/*            </p>*/}
+                {/*        </div>*/}
+                {/*    </Switch>*/}
+                {/*    <Switch*/}
+                {/*        checked={useClubPrice}*/}
+                {/*        onValueChange={setUseClubPrice}*/}
+                {/*        classNames={{*/}
+                {/*            base: cn(*/}
+                {/*                "inline-flex flex-row-reverse w-full max-w-md bg-content1 hover:bg-content2 items-center",*/}
+                {/*                "justify-between cursor-pointer rounded-lg gap-2 p-4 border-2 border-transparent",*/}
+                {/*                "data-[selected=true]:border-primary"*/}
+                {/*            ),*/}
+                {/*            wrapper: "p-0 h-4 overflow-visible",*/}
+                {/*            thumb: cn("w-6 h-6 border-2 shadow-lg",*/}
+                {/*                "group-data-[hover=true]:border-primary",*/}
+                {/*                //selected*/}
+                {/*                "group-data-[selected=true]:ml-6",*/}
+                {/*                // pressed*/}
+                {/*                "group-data-[pressed=true]:w-7",*/}
+                {/*                "group-data-[selected]:group-data-[pressed]:ml-4"*/}
+                {/*            )*/}
+                {/*        }}*/}
+                {/*    >*/}
+                {/*        <div className="flex flex-col gap-1">*/}
+                {/*            <p className="text-medium">Use Club Price</p>*/}
+                {/*            <p className="text-tiny text-default-400 md:hidden sm:lg:block">*/}
+                {/*                Replace the "Retail Price" with "Club Price".<br/> This is used for Sam's Club tags.*/}
+                {/*            </p>*/}
+                {/*        </div>*/}
+                {/*    </Switch>*/}
+                {/*    <Switch*/}
+                {/*        checked={usePercentage}*/}
+                {/*        onValueChange={setUsePercentage}*/}
+                {/*        classNames={{*/}
+                {/*            base: cn(*/}
+                {/*                "inline-flex flex-row-reverse w-full max-w-md bg-content1 hover:bg-content2 items-center",*/}
+                {/*                "justify-between cursor-pointer rounded-lg gap-2 p-4 border-2 border-transparent",*/}
+                {/*                "data-[selected=true]:border-primary"*/}
+                {/*            ),*/}
+                {/*            wrapper: "p-0 h-4 overflow-visible",*/}
+                {/*            thumb: cn("w-6 h-6 border-2 shadow-lg",*/}
+                {/*                "group-data-[hover=true]:border-primary",*/}
+                {/*                //selected*/}
+                {/*                "group-data-[selected=true]:ml-6",*/}
+                {/*                // pressed*/}
+                {/*                "group-data-[pressed=true]:w-7",*/}
+                {/*                "group-data-[selected]:group-data-[pressed]:ml-4"*/}
+                {/*            )*/}
+                {/*        }}*/}
+                {/*    >*/}
+                {/*        <div className="flex flex-col gap-1">*/}
+                {/*            <p className="text-medium">Use Percentage</p>*/}
+                {/*            <p className="text-tiny text-default-400 md:hidden sm:lg:block">*/}
+                {/*                Calculate the Mardens Price using a percentage instead of a static value.*/}
+                {/*            </p>*/}
+                {/*        </div>*/}
+                {/*    </Switch>*/}
+                {/*</div>*/}
                 <div className={"ml-auto"}>
                     <Tooltip content={"Print"}>
                         <Button color={"primary"} radius={"full"} className={"min-w-0 h-14 w-14"} onClick={print}><FontAwesomeIcon icon={faPrint}/></Button>

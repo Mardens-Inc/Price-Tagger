@@ -14,6 +14,7 @@ export default function GeneralForm()
     const [year, setYear] = useState<string | null>(null);
     const [stickerSize, setStickerSize] = useState<string>("1x.75");
     const [useClubPrice, setUseClubPrice] = useState<boolean>(false);
+    const [showPriceLabel, setShowPriceLabel] = useState<boolean>(false);
     const [usePercentage, setUsePercentage] = useState<boolean>(false);
     const [percentage, setPercentage] = useState<string>("");
     const [printUrl, setPrintUrl] = useState<URL>(new URL(`https://pricing-new.mardens.com/api/tag-pricer/general?svg`));
@@ -29,6 +30,7 @@ export default function GeneralForm()
         if (mardensPrice) uri.searchParams.append("mp", mardensPrice);
         if (year) uri.searchParams.append("year", year);
         if (useClubPrice) uri.searchParams.append("cp", "");
+        if (showPriceLabel) uri.searchParams.append("showPriceLabel", "");
         if (stickerSize)
         {
             const [width, height] = stickerSize.split("x");
@@ -39,7 +41,7 @@ export default function GeneralForm()
         uri.searchParams.append("v", Date.now().toString());
 
         setPrintUrl(uri);
-    }, [department, label, color, retailPrice, mardensPrice, year, stickerSize, useClubPrice, usePercentage]);
+    }, [department, label, color, retailPrice, mardensPrice, year, stickerSize, useClubPrice, usePercentage, showPriceLabel]);
 
     const print = () =>
     {
@@ -67,7 +69,34 @@ export default function GeneralForm()
             <CardHeader>
                 <p className={"text-4xl mr-auto"}> General Tags </p>
 
-                <div className="flex flex-row gap-4">
+                <div className="flex flex-row gap-4 grow shrink sm:flex-wrap lg:flex-nowrap md:flex-nowrap">
+                    <Switch
+                        checked={showPriceLabel}
+                        onValueChange={setShowPriceLabel}
+                        classNames={{
+                            base: cn(
+                                "inline-flex flex-row-reverse max-w-md grow bg-content1 hover:bg-content2 items-center",
+                                "justify-between cursor-pointer rounded-lg gap-2 p-4 border-2 border-transparent",
+                                "data-[selected=true]:border-primary"
+                            ),
+                            wrapper: "p-0 h-4 overflow-visible",
+                            thumb: cn("w-6 h-6 border-2 shadow-lg",
+                                "group-data-[hover=true]:border-primary",
+                                //selected
+                                "group-data-[selected=true]:ml-6",
+                                // pressed
+                                "group-data-[pressed=true]:w-7",
+                                "group-data-[selected]:group-data-[pressed]:ml-4"
+                            )
+                        }}
+                    >
+                        <div className="flex flex-col gap-1">
+                            <p className="text-medium">Show Price Label</p>
+                            <p className="text-tiny text-default-400 md:hidden sm:lg:block">
+                                Show will show the "Marden's Price" and "Retail Price" over the fields
+                            </p>
+                        </div>
+                    </Switch>
                     <Switch
                         checked={useClubPrice}
                         onValueChange={setUseClubPrice}
@@ -90,7 +119,7 @@ export default function GeneralForm()
                     >
                         <div className="flex flex-col gap-1">
                             <p className="text-medium">Use Club Price</p>
-                            <p className="text-tiny text-default-400">
+                            <p className="text-tiny text-default-400 md:hidden sm:lg:block">
                                 Replace the "Retail Price" with "Club Price".<br/> This is used for Sam's Club tags.
                             </p>
                         </div>
@@ -117,7 +146,7 @@ export default function GeneralForm()
                     >
                         <div className="flex flex-col gap-1">
                             <p className="text-medium">Use Percentage</p>
-                            <p className="text-tiny text-default-400">
+                            <p className="text-tiny text-default-400 md:hidden sm:lg:block">
                                 Calculate the Mardens Price using a percentage instead of a static value.
                             </p>
                         </div>

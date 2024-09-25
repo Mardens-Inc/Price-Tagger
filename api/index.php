@@ -29,6 +29,7 @@ $app->get("/", function ($request, $response, $args)
     $height -= .05;
     $debug = isset($params["debug"]);
     $outline = $debug ? "outline: 1px solid red" : "";
+    $showPriceLabel = isset($params["showPriceLabel"]);
 
     $retailLabel = $useClubPrice ? "Club Price" : "Retail Price";
 
@@ -160,7 +161,7 @@ $app->get("/", function ($request, $response, $args)
         }
         if ($mp != "")
         {
-            if ($price != "")
+            if ($showPriceLabel)
             {
                 $fontSize = $mpTitleFontSizeModifier * 72;
                 $svgContent .= "<text x='95%' y='{$yPos}in' font-family='Verdana' font-size='{$fontSize}px' font-weight='bold' text-anchor='end'>Marden's Price</text>";
@@ -231,7 +232,7 @@ $app->get("/", function ($request, $response, $args)
             $pStyleMp = "";
             $divStyleMp = "<div style='font-size: {$mpFontSizeModifier}in; font-weight: Bold; padding-left: 3px; padding-bottom: 2px; line-height: {$mpFontSizeModifier}in;height: 100%;display: flex;justify-content: center;align-items: center;'>$$mp</div>";
 
-            if ($price != "")
+            if ($showPriceLabel)
             {
                 $pStyleMp = "<div style='font-size: {$mpTitleFontSizeModifier}in; font-weight: Bold; padding-left: 3px;line-height: {$mpTitleFontSizeModifier}in; text-align: right;'>Marden's Price</div>";
                 $divStyleMp = "<div style='font-size: {$mpFontSizeModifier}in; font-weight: Bold; padding-left: 3px; padding-bottom: 2px; line-height: {$mpFontSizeModifier}in;'>$$mp</div>";

@@ -136,7 +136,7 @@ $app->get("/", function ($request, $response, $args)
         }
         if ($price != "")
         {
-            if ($mp != "")
+            if ($showPriceLabel)
             {
                 $fontSize = $priceTitleFontSizeModifier * 72;
                 $svgContent .= "<text x='95%' y='{$yPos}in' font-family='Verdana' font-size='{$fontSize}px' font-weight='bold' text-anchor='end'>$retailLabel</text>";
@@ -149,7 +149,7 @@ $app->get("/", function ($request, $response, $args)
                     $yPos += $priceTitleFontSizeModifier - .05;
                 } else
                 {
-                    $yPos += $priceTitleFontSizeModifier - .05;
+                    $yPos += $priceTitleFontSizeModifier;
                 }
             } else
             {
@@ -181,7 +181,19 @@ $app->get("/", function ($request, $response, $args)
             }
             $fontSize = $mpFontSizeModifier * 72;
             $svgContent .= "<text x='50%' y='{$yPos}in' font-family='Verdana' font-size='{$fontSize}px' font-weight='bold' text-anchor='middle'>$$mp</text>";
-            $yPos += $mpFontSizeModifier - .05;
+            if ($year != "" || $color != "")
+            {
+                if ($department == "" || $label == "")
+                {
+                    $yPos += $mpFontSizeModifier - .1;
+                } else
+                {
+                    $yPos += $mpFontSizeModifier - .05;
+                }
+            } else
+            {
+                $yPos += $mpFontSizeModifier - .05;
+            }
         }
         if ($year != "" || $color != "")
         {
@@ -218,7 +230,7 @@ $app->get("/", function ($request, $response, $args)
             $pStyle = "";
             $divStyle = "<div style='font-size: {$priceFontSizeModifier}in; font-weight: Bold; padding-bottom: 2px; line-height: {$priceFontSizeModifier}in;margin-block: auto;height: 100%;display: flex;justify-content: center;align-items: center;'>$$price</div>";
 
-            if ($mp != "")
+            if ($showPriceLabel)
             {
                 $pStyle = "<div style='font-size: {$priceTitleFontSizeModifier}in; font-weight: Bold; padding-left: 3px;line-height: {$priceTitleFontSizeModifier}in; text-align: right;'>$retailLabel</div>";
                 $divStyle = "<div style='font-size: {$priceFontSizeModifier}in; font-weight: Bold; padding-bottom: 2px; line-height: {$priceFontSizeModifier}in;'>$$price</div>";

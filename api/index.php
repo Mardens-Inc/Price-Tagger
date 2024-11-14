@@ -136,7 +136,7 @@ $app->get("/", function ($request, $response, $args)
         }
         if ($price != "")
         {
-            if ($showPriceLabel)
+            if ($showPriceLabel && $label == "")
             {
                 $fontSize = $priceTitleFontSizeModifier * 72;
                 $svgContent .= "<text x='95%' y='{$yPos}in' font-family='Verdana' font-size='{$fontSize}px' font-weight='bold' text-anchor='end'>$retailLabel</text>";
@@ -153,7 +153,8 @@ $app->get("/", function ($request, $response, $args)
                 }
             } else
             {
-                $yPos += .1;
+                $yPos += .05;
+                $priceFontSizeModifier = $priceFontSizeModifier + .02;
             }
             $fontSize = $priceFontSizeModifier * 72;
             $svgContent .= "<text x='50%' y='{$yPos}in' font-family='Verdana' font-size='{$fontSize}px' font-weight='bold' text-anchor='middle'>$$price</text>";
@@ -177,7 +178,7 @@ $app->get("/", function ($request, $response, $args)
                 }
             } else
             {
-                $yPos += .1;
+                $yPos += .01;
             }
             $fontSize = $mpFontSizeModifier * 72;
             $svgContent .= "<text x='50%' y='{$yPos}in' font-family='Verdana' font-size='{$fontSize}px' font-weight='bold' text-anchor='middle'>$$mp</text>";
@@ -209,7 +210,7 @@ $app->get("/", function ($request, $response, $args)
     {
         $response->getBody()->write("
     <body style='margin: .05in 0 0 .05in;font-size:5pt;'>
-    <div style='font-family: verdana,sans-serif;width: {$width}in; height: {$height}in; text-align: center; margin: 0; {$outline}; position: relative;overflow:hidden;display: flex;flex-direction: column'>
+    <div style='font-family: verdana,sans-serif;width: {$width}in; height: {$height}in; text-align: center; margin: 0; {$outline}; position: relative;overflow:hidden;display: flex;flex-direction: column;gap:2px'>
     ");
         if ($department != "")
         {
@@ -228,11 +229,13 @@ $app->get("/", function ($request, $response, $args)
         if ($price != "")
         {
             $pStyle = "";
-            $divStyle = "<div style='font-size: {$priceFontSizeModifier}in; font-weight: Bold; padding-bottom: 2px; line-height: {$priceFontSizeModifier}in;margin-block: auto;height: 100%;display: flex;justify-content: center;align-items: center;'>$$price</div>";
 
-            if ($showPriceLabel)
+            if ($showPriceLabel && $label == "")
             {
                 $pStyle = "<div style='font-size: {$priceTitleFontSizeModifier}in; font-weight: Bold; padding-left: 3px;line-height: {$priceTitleFontSizeModifier}in; text-align: right;'>$retailLabel</div>";
+                $divStyle = "<div style='font-size: {$priceFontSizeModifier}in; font-weight: Bold; padding-bottom: 2px; line-height: {$priceFontSizeModifier}in;'>$$price</div>";
+            }else{
+                $priceFontSizeModifier = $priceFontSizeModifier + .02;
                 $divStyle = "<div style='font-size: {$priceFontSizeModifier}in; font-weight: Bold; padding-bottom: 2px; line-height: {$priceFontSizeModifier}in;'>$$price</div>";
             }
 

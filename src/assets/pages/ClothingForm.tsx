@@ -12,7 +12,7 @@ export default function ClothingForm()
 
     useEffect(() =>
     {
-        if(!date)return;
+        if (!date) return;
         const html =
             `
 <html lang="en">
@@ -67,7 +67,7 @@ export default function ClothingForm()
                     label={"Ship Date"}
                     minValue={today(getLocalTimeZone())}
                     defaultValue={today(getLocalTimeZone())}
-                    onChange={setDate}
+                    onChange={value => setDate(value ?? today(getLocalTimeZone()))}
                     showMonthAndYearPickers
                 />
             </CardBody>

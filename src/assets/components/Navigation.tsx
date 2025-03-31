@@ -1,23 +1,11 @@
 import {NavbarMenuToggle, Tab, Tabs} from "@nextui-org/react";
 import {Navbar, NavbarBrand, NavbarContent, NavbarItem} from "@nextui-org/navbar";
 import ThemeSwitcher from "./ThemeSwitcher.tsx";
-import {useEffect, useState} from "react";
 import {useLocation} from "react-router-dom";
 
 export default function Navigation()
 {
-    const [pathname, setPathname] = useState<string>("");
-    const location = useLocation();
-
-    useEffect(() =>
-    {
-        const newLocation = location.pathname;
-        console.log(newLocation);
-        if (newLocation !== pathname)
-        {
-            setPathname(newLocation);
-        }
-    }, [location.pathname, pathname]);
+    const {pathname} = useLocation();
 
     return (
         <Navbar>

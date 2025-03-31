@@ -1,3 +1,3 @@
 # tagpricer
 
-A form to easily print various tags
+A price tagger app

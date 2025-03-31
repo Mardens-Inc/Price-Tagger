@@ -1,8 +1,7 @@
-import {Autocomplete, AutocompleteItem, Button, Card, CardBody, CardHeader, Image, Input, Tooltip} from "@nextui-org/react";
+import {Autocomplete, AutocompleteItem, Button, Card, CardBody, CardHeader, Image, Input, Tooltip} from "@heroui/react";
 import {useEffect, useState} from "react";
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faPercentage, faPrint, faStore, faStoreSlash, faTag, faTags} from "@fortawesome/free-solid-svg-icons";
 import {departments} from "../../main.tsx";
+import {Icon} from "@iconify-icon/react";
 
 export default function GeneralForm()
 {
@@ -70,25 +69,25 @@ export default function GeneralForm()
                 <p className={"text-4xl mr-auto"}> General Tags </p>
                 <div className="flex flex-row gap-4">
                     <Tooltip content={"Show will show the \"Marden's Price\" and \"Retail Price\" over the fields"}>
-                        <Button radius={"full"} color={showPriceLabel ? "primary" : "default"} onClick={() => setShowPriceLabel(prev => !prev)}>
-                            <FontAwesomeIcon icon={showPriceLabel ? faTags : faTag}/>
+                        <Button radius={"full"} color={showPriceLabel ? "primary" : "default"} onPress={() => setShowPriceLabel(prev => !prev)}>
+                            <Icon icon="mage:tag-2-fill"/>
                         </Button>
                     </Tooltip>
                     <Tooltip content={"Replace the \"Retail Price\" with \"Club Price\". This is used for Sam's Club tags."}>
-                        <Button radius={"full"} color={useClubPrice ? "primary" : "default"} onClick={() => setUseClubPrice(prev => !prev)}>
-                            <FontAwesomeIcon icon={useClubPrice ? faStore : faStoreSlash}/>
+                        <Button radius={"full"} color={useClubPrice ? "primary" : "default"} onPress={() => setUseClubPrice(prev => !prev)}>
+                            {useClubPrice ? <Icon icon="fa6-solid:store"/> : <Icon icon="fa6-solid:store-slash"/>}
                         </Button>
                     </Tooltip>
                     <Tooltip content={"Calculate the Mardens Price using a percentage instead of a static value."}>
-                        <Button radius={"full"} color={usePercentage ? "primary" : "default"} onClick={() => setUsePercentage(prev => !prev)}>
-                            <FontAwesomeIcon icon={faPercentage}/>
+                        <Button radius={"full"} color={usePercentage ? "primary" : "default"} onPress={() => setUsePercentage(prev => !prev)}>
+                            <Icon icon="fa6-solid:percent"/>
                         </Button>
                     </Tooltip>
 
                 </div>
                 <div className={"ml-auto"}>
                     <Tooltip content={"Print"}>
-                        <Button color={"primary"} radius={"full"} className={"min-w-0 h-14 w-14"} onClick={print}><FontAwesomeIcon icon={faPrint}/></Button>
+                        <Button color={"primary"} radius={"full"} className={"min-w-0 h-14 w-14"} onPress={print}><Icon icon="mage:printer-fill"/></Button>
                     </Tooltip>
                 </div>
             </CardHeader>

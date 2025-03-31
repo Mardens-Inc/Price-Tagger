@@ -1,7 +1,6 @@
-import {Button, Card, CardBody, CardFooter, CardHeader, Input, Tooltip} from "@nextui-org/react";
+import {Button, Card, CardBody, CardFooter, CardHeader, Input, Tooltip} from "@heroui/react";
 import {useEffect, useState} from "react";
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faPrint} from "@fortawesome/free-solid-svg-icons";
+import {Icon} from "@iconify-icon/react";
 
 export default function EyewearForm()
 {
@@ -57,7 +56,7 @@ export default function EyewearForm()
                 <p className={"text-4xl"}> Eyewear Tags </p>
                 <div className={"ml-auto"}>
                     <Tooltip content={"Print"}>
-                        <Button color={"primary"} radius={"full"} className={"min-w-0 h-14 w-14"} onClick={print}><FontAwesomeIcon icon={faPrint}/></Button>
+                        <Button color={"primary"} radius={"full"} className={"min-w-0 h-14 w-14"} onPress={print}><Icon icon="mage:printer-fill" /></Button>
                     </Tooltip>
                 </div>
             </CardHeader>

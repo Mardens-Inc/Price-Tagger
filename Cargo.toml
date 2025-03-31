@@ -1,0 +1,33 @@
+[package]
+name = "tagpricer"
+version = "0.1.0"
+edition = "2021"
+build = "src-actix/build.rs"
+
+[[bin]]
+name = "tagpricer"
+path = "src-actix/main.rs"
+
+[lib]
+name = "tagpricer_lib"
+path = "src-actix/lib.rs"
+crate-type = ["lib"]
+
+[dependencies]
+actix-web = { version = "4.9.0" }
+futures-util = "0.3.30"
+serde = { version = "1.0.208", features = ["derive"] }
+serde_json = { version = "1.0.125" }
+env_logger = "0.11.5"
+include_dir = "0.7.4"
+walkdir = "2.5.0"
+log = "0.4.22"
+anyhow = "1.0.95"
+vite-actix = "0.1.1"
+database-common-lib = { git = "https://github.com/Mardens-Inc/database-common-lib.git" }
+sqlx = { version = "0.8.3", features = ["mysql", "macros", "derive", "json", "runtime-tokio"] }
+regex = "1.11.1"
+
+[build-dependencies]
+include_dir = "0.7.4"
+walkdir = "2.5.0"

@@ -1,5 +1,5 @@
-import {NavbarMenuToggle, Tab, Tabs} from "@nextui-org/react";
-import {Navbar, NavbarBrand, NavbarContent, NavbarItem} from "@nextui-org/navbar";
+import {NavbarMenuToggle, Tab, Tabs} from "@heroui/react";
+import {Navbar, NavbarBrand, NavbarContent, NavbarItem} from "@heroui/react";
 import ThemeSwitcher from "./ThemeSwitcher.tsx";
 import {useLocation} from "react-router-dom";
 

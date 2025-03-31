@@ -1,4 +1,4 @@
-import {Switch} from "@nextui-org/react";
+import {Switch} from "@heroui/react";
 import {SVGProps} from "react";
 import {JSX} from "react/jsx-runtime";
 import $ from "jquery"

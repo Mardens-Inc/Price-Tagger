@@ -120,21 +120,29 @@ export default function GeneralForm()
                             onSelectionChange={value => setLabel(value?.toString() ?? "")}
                         >
                             <AutocompleteItem key="" value="">No Label</AutocompleteItem>
-                            <AutocompleteItem key="Catalog Site Price" value="Catalog Site Price">Catalog Site Price</AutocompleteItem>
-                            <AutocompleteItem key="Internet Site Price" value="Internet Site Price">Internet Site Price</AutocompleteItem>
-                            <AutocompleteItem key="Office Store" value="Office Store">Office Store</AutocompleteItem>
-                            <AutocompleteItem key="Big Box Price" value="Big Box Price">Big Box Price</AutocompleteItem>
-                            <AutocompleteItem key="Drug Store Price" value="Drug Store Price">Drug Store Price</AutocompleteItem>
-                            <AutocompleteItem key="Book Store Price" value="Book Store Price">Book Store Price</AutocompleteItem>
-                            <AutocompleteItem key="Holiday Stock" value="Holiday Stock">Holiday Stock</AutocompleteItem>
-                            <AutocompleteItem key="Supply Store Price" value="Supply Store Price">Supply Store Price</AutocompleteItem>
-                            <AutocompleteItem key="Rug Store Price" value="Rug Store Price">Rug Store Price</AutocompleteItem>
-                            <AutocompleteItem key="Garden Center Price" value="Garden Center Price">Garden Center Price</AutocompleteItem>
-                            <AutocompleteItem key="Club Price" value="Club Price">Club Price</AutocompleteItem>
-                            <AutocompleteItem key="Gift Shop Price" value="Gift Shop Price">Gift Shop Price</AutocompleteItem>
-                            <AutocompleteItem key="Sporting Goods Store" value="Sporting Goods Store">Sporting Goods Store</AutocompleteItem>
-                            <AutocompleteItem key="Mardens Price" value="Mardens Price">Mardens Price</AutocompleteItem>
-                            <AutocompleteItem key="Retail Price" value="Retail Price">Retail Price</AutocompleteItem>
+                            {[
+                                "Catalog Site Price",
+                                "Internet Site Price",
+                                "Office Store",
+                                "Big Box Price",
+                                "Drug Store Price",
+                                "Book Store Price",
+                                "Holiday Stock",
+                                "Supply Store Price",
+                                "Rug Store Price",
+                                "Garden Center Price",
+                                "Club Price",
+                                "Gift Shop Price",
+                                "Sporting Goods Store",
+                                "Mardens Price",
+                                "Retail Price",
+                                "Pet Shop Retail",
+                                "Dept Store Retail"
+                            ].map((label) => (
+                                <AutocompleteItem key={label} value={label}>
+                                    {label}
+                                </AutocompleteItem>
+                            )) as any}
                         </Autocomplete>
                     </div>
                     <div className={"flex flex-row"}>
@@ -216,27 +224,34 @@ export default function GeneralForm()
                                     onSelectionChange={value => setColor(value?.toString() ?? "")}
                                 >
                                     <AutocompleteItem key="" value="">No Color</AutocompleteItem>
-                                    <AutocompleteItem key="Peach" value="Peach">Peach</AutocompleteItem>
-                                    <AutocompleteItem key="Rose" value="Rose">Rose</AutocompleteItem>
-                                    <AutocompleteItem key="Light-Purple" value="Light-Purple">Light Purple</AutocompleteItem>
-                                    <AutocompleteItem key="Purple" value="Purple">Purple</AutocompleteItem>
-                                    <AutocompleteItem key="Dark-Purple" value="Dark-Purple">Dark Purple</AutocompleteItem>
-                                    <AutocompleteItem key="Light-Blue" value="Light-Blue">Light Blue</AutocompleteItem>
-                                    <AutocompleteItem key="Blue" value="Blue">Blue</AutocompleteItem>
-                                    <AutocompleteItem key="Dark-Blue" value="Dark-Blue">Dark Blue</AutocompleteItem>
-                                    <AutocompleteItem key="Aqua" value="Aqua">Aqua</AutocompleteItem>
-                                    <AutocompleteItem key="Brown" value="Brown">Brown</AutocompleteItem>
-                                    <AutocompleteItem key="Dark-Brown" value="Dark-Brown">Dark Brown</AutocompleteItem>
-                                    <AutocompleteItem key="Mint" value="Mint">Mint</AutocompleteItem>
-                                    <AutocompleteItem key="Green" value="Green">Green</AutocompleteItem>
-                                    <AutocompleteItem key="Dark-Green" value="Dark-Green">Dark Green</AutocompleteItem>
-                                    <AutocompleteItem key="Yellow" value="Yellow">Yellow</AutocompleteItem>
-                                    <AutocompleteItem key="Dark-Yellow" value="Dark-Yellow">Dark Yellow</AutocompleteItem>
-                                    <AutocompleteItem key="Light-Pink" value="Light-Pink">Light Pink</AutocompleteItem>
-                                    <AutocompleteItem key="Pink" value="Pink">Pink</AutocompleteItem>
-                                    <AutocompleteItem key="Dark-Gray" value="Dark-Gray">Dark Gray</AutocompleteItem>
-                                    <AutocompleteItem key="Teal" value="Teal">Teal</AutocompleteItem>
-                                    <AutocompleteItem key="Gray" value="Gray">Gray</AutocompleteItem>
+                                    {[
+                                        "White",
+                                        "Peach",
+                                        "Rose",
+                                        "Light-Purple",
+                                        "Purple",
+                                        "Dark-Purple",
+                                        "Light-Blue",
+                                        "Blue",
+                                        "Dark-Blue",
+                                        "Aqua",
+                                        "Brown",
+                                        "Dark-Brown",
+                                        "Mint",
+                                        "Green",
+                                        "Dark-Green",
+                                        "Yellow",
+                                        "Dark-Yellow",
+                                        "Light-Pink",
+                                        "Pink",
+                                        "Dark-Gray",
+                                        "Teal",
+                                        "Gray"
+                                    ].map((color) => (
+                                        <AutocompleteItem key={color} value={color}>
+                                            {color.replace(/-/g, " ")}
+                                        </AutocompleteItem>
+                                    )) as any}
                                 </Autocomplete>
                                 <Input
                                     size={"sm"}
